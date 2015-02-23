@@ -37,7 +37,6 @@ var webdriver = require('selenium-webdriver');
 var protractor = require('protractor');
 var locatorFinder = require('../lib/locatorFinder.js');
 var repl = require('repl');
-var util = require('util');
 var vm = require('vm');
 var path = require('path');
 var http = require('http');
@@ -183,7 +182,7 @@ var startRepl = function() {
 
   flowRepl.on('exit', function() {
     driver.quit();
-    util.puts('Shutting down. Goodbye.');
+    console.log('Shutting down. Goodbye.');
   });
 };
 
@@ -215,19 +214,18 @@ var startUp = function() {
     global.by = global.By = protractor.By;
     global.list = list;
 
-
-    util.puts('Type <tab> to see a list of locator strategies.');
-    util.puts('Use the `list` helper function to find elements by strategy:');
-    util.puts('  e.g., list(by.binding(\'\')) gets all bindings.');
-    util.puts('');
-    util.puts('IMPORTANT:');
-    util.puts('The element explorer will not work when the dev tools window ' +
+    console.log('Type <tab> to see a list of locator strategies.');
+    console.log('Use the `list` helper function to find elements by strategy:');
+    console.log('  e.g., list(by.binding(\'\')) gets all bindings.');
+    console.log('');
+    console.log('IMPORTANT:');
+    console.log('The element explorer will not work when the dev tools window ' +
         'is open on the first tab of the launched chrome browser. To use the ' +
         'dev tools duplicate the first tab and inspect on the second tab.');
-    util.puts('');
+    console.log('');
 
     var url = process.argv[2] || 'about:blank';
-    util.puts('Getting page at: ' + url);
+    console.log('Getting page at: ' + url);
     driver.get(url);
 
     startServer();
