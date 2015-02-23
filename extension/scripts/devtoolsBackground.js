@@ -51,10 +51,17 @@ var getSuggestions = function() {
 
     // Model? Test all of the prefixes.
     var prefixes = ['ng-', 'ng_', 'data-ng-', 'x-ng-', 'ng:'];
+
     prefixes.forEach(function(prefix) {
       // Bail out if model was found.
-      if (!locators.byModel &&  $0.getAttribute(prefix + 'model')) {
+      if (!locators.byModel && $0.getAttribute(prefix + 'model')) {
         locators.byModel = $0.getAttribute(prefix + 'model');
+      }
+    });
+
+    prefixes.forEach(function(prefix) {
+      if (!locators.byRepeater && $0.getAttribute(prefix + 'repeat')) {
+        locators.byRepeater = $0.getAttribute(prefix + 'repeat');
       }
     });
 
